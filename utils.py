@@ -53,13 +53,28 @@ def make_requests_for_gpt_evaluation(df, filename, dir="requests", model="gemini
 
 
 def change_jsonl_to_csv(input_file, output_file, prompt_column="prompt", response_column="response"):
-    prompts = []
-    responses = []
+    """Parse parallel-processor output JSONL into a (prompt, response) DataFrame.
+
+    Each line is `[request_json, response_or_errors, ...]`. On success,
+    `response_or_errors` is the API response dict; on failure (after all
+    retries exhausted) it's a list of error strings, which we skip with a
+    summary log so the caller can investigate.
+    """
+    prompts, responses = [], []
+    failures = []
     with open(input_file, "r") as json_file:
         for line in json_file:
             data = json.loads(line)
-            prompts.append(data[0]["messages"][0]["content"])
-            responses.append(data[1]["choices"][0]["message"]["content"])
+            request, payload = data[0], data[1]
+            if isinstance(payload, list):
+                failures.append(payload)
+                continue
+            prompts.append(request["messages"][0]["content"])
+            responses.append(payload["choices"][0]["message"]["content"])
+
+    if failures:
+        print(f"⚠️  {len(failures)} request(s) failed after all retries (skipped).")
+        print(f"   First failure errors: {failures[0]}")
 
     df = pd.DataFrame({prompt_column: prompts, response_column: responses})
     df.to_csv(output_file, index=False)
