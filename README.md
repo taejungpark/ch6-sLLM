@@ -5,7 +5,7 @@
 ## 빠른 시작 (Google Colab)
 
 1. **Colab에서 노트북 열기** — 아래 배지를 클릭하거나 직접 열기:
-   - [`chapter_6.ipynb`를 Colab에서 열기](https://colab.research.google.com/github/taejungpark/6장-sLLM/blob/main/chapter_6.ipynb)
+   - [`chapter_6.ipynb`를 Colab에서 열기](https://colab.research.google.com/github/taejungpark/ch6-sLLM/blob/main/chapter_6.ipynb)
 
 2. **런타임 설정** — `런타임 → 런타임 유형 변경 → T4 GPU` 선택
 
