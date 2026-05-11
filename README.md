@@ -4,13 +4,19 @@
 
 ## 빠른 시작 (Google Colab)
 
-1. **Colab에서 노트북 열기** — 아래 배지를 클릭하거나 직접 열기:
-   - [`chapter_6.ipynb`를 Colab에서 열기](https://colab.research.google.com/github/taejungpark/ch6-sLLM/blob/main/chapter_6.ipynb)
+1. **노트북 선택** — 같은 파이프라인을 두 가지 judge 백엔드로 제공합니다. 둘 중 하나만 실행하면 됩니다:
+
+   | 노트북 | Judge 백엔드 | API 키 발급 | 무료 tier 특성 |
+   |---|---|---|---|
+   | [`chapter_6.ipynb`](https://colab.research.google.com/github/taejungpark/ch6-sLLM/blob/main/chapter_6.ipynb) | Gemini 2.5 Flash | [Google AI Studio](https://aistudio.google.com/apikey) | 5 RPM (느림), 100건 평가에 ~20분 |
+   | [`chapter_6_Groq.ipynb`](https://colab.research.google.com/github/taejungpark/ch6-sLLM/blob/main/chapter_6_Groq.ipynb) | Groq (Llama 3.3 70B) | [Groq Console](https://console.groq.com/keys) | 30 RPM, 100건에 ~3-4분 |
+
+   ※ 계정에 따라 Gemini free tier가 `limit: 0`으로 막혀있는 경우(billing 활성화된 GCP 프로젝트 등)가 있어, 강의용으로는 **Groq 버전을 권장**합니다.
 
 2. **런타임 설정** — `런타임 → 런타임 유형 변경 → T4 GPU` 선택
 
 3. **API 키 등록** (좌측 🔑 Secrets 탭, "Notebook access" ON):
-   - `GEMINI_API_KEY` — [Google AI Studio](https://aistudio.google.com/apikey)에서 무료 발급
+   - 선택한 노트북에 맞게 `GEMINI_API_KEY` 또는 `GROQ_API_KEY` 등록
    - `HF_TOKEN` *(선택)* — 학습한 모델을 허깅페이스 허브에 업로드하려는 경우만
 
 4. **셀 순서대로 실행** — 첫 셀이 이 저장소를 자동으로 클론합니다.
@@ -28,7 +34,8 @@
 
 ## 파일 구성
 
-- `chapter_6.ipynb` — 메인 노트북
+- `chapter_6.ipynb` — Gemini judge 버전
+- `chapter_6_Groq.ipynb` — Groq judge 버전 (강의용 권장)
 - `utils.py` — 프롬프트 포맷팅 / 평가 요청 JSONL 작성 / 결과 CSV 변환
 - `api_request_parallel_processor.py` — OpenAI 호환 엔드포인트(Gemini/OpenAI/Ollama/Groq) 비동기 배치 클라이언트
 - `requirements.txt` — Colab에서 핀할 패키지 버전
