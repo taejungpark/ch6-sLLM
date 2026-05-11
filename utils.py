@@ -41,7 +41,7 @@ def make_requests_for_gpt_evaluation(df, filename, dir="requests", model="gemini
         {
             "model": model,
             "response_format": {"type": "json_object"},
-            "messages": [{"role": "system", "content": prompt}],
+            "messages": [{"role": "user", "content": prompt}],
         }
         for prompt in prompts
     ]
