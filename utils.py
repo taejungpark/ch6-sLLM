@@ -18,7 +18,7 @@ def make_prompt(ddl, question, query=""):
     return prompt
 
 
-def make_requests_for_gpt_evaluation(df, filename, dir="requests", model="gemini-2.0-flash"):
+def make_requests_for_gpt_evaluation(df, filename, dir="requests", model="gemini-2.5-flash"):
     """Build a JSONL of OpenAI-compatible chat-completion requests for an LLM judge.
 
     Default judge is Gemini 2.0 Flash via the OpenAI-compatible endpoint, but the
