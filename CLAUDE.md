@@ -22,7 +22,7 @@ The primary workflow lives in `chapter_6.ipynb`; run cells in order on Colab. Pi
 - `GEMINI_API_KEY` — get from https://aistudio.google.com/apikey (free)
 - `HF_TOKEN` — optional, only for pushing the merged model to the Hub
 
-**LLM-judge evaluation** (default backend = Gemini 2.0 Flash):
+**LLM-judge evaluation** (default backend = Gemini 2.5 Flash):
 ```bash
 python api_request_parallel_processor.py \
   --requests_filepath <input.jsonl> \
@@ -59,13 +59,42 @@ The script auto-reads `OPENAI_API_KEY` / `GEMINI_API_KEY` / `GROQ_API_KEY` env v
 
 **`utils.py`** — Three helpers:
 - `make_prompt(ddl, question, query="")` — formats the DDL+question prompt
-- `make_requests_for_gpt_evaluation(df, filename, dir="requests", model="gemini-2.0-flash")` — converts a DataFrame of predictions to a JSONL request file
+- `make_requests_for_gpt_evaluation(df, filename, dir="requests", model="gemini-2.5-flash")` — converts a DataFrame of predictions to a JSONL request file
 - `change_jsonl_to_csv(input, output, ...)` — converts judge response JSONL to CSV for analysis
 
 **`requirements.txt`** — pinned versions for reproducibility on Colab.
 
 
 ## Change History
+
+### 2026-05-11 — Post-launch fixes from first Colab run
+
+After the initial 2026-05-05 modernization landed and was tried on a real
+Colab T4 runtime, several issues surfaced that the local environment couldn't
+reproduce:
+
+- **Pinned versions too old for Colab's current stack.** `transformers
+  4.46.3` imported `triton.ops` which Triton 3.x removed; `bitsandbytes
+  0.44.1` had no CUDA 12.8 binary. Bumped to `transformers==4.49.0`,
+  `trl==0.13.0`, `peft==0.14.0`, `accelerate==1.3.0`, `datasets==3.3.0`;
+  unpinned `bitsandbytes` (its CUDA-binary matching is hardware-specific
+  and pinning makes it brittle).
+- **TRL API change.** `SFTTrainer(tokenizer=...)` → `SFTTrainer(processing_class=...)` for trl 0.13+.
+- **`huggingface_hub==0.26.2` clashed with Colab's pre-installed
+  diffusers/gradio.** Removed pin, kept lower bound only.
+- **`change_jsonl_to_csv` crashed on failed judge requests** (the parallel
+  processor writes `[request, [error_str, ...]]` for exhausted retries).
+  Now skips with a summary instead.
+- **Gemini OpenAI-compat rejected `system`-only messages** with `400
+  contents is not specified`. Switched to `role: "user"` (works on both
+  OpenAI and Gemini).
+- **`gemini-2.0-flash` returned `limit: 0`** on the user's free tier.
+  Switched default to `gemini-2.5-flash` and added a smoke-test cell that
+  fires a single request before the 100-call eval, so quota/auth/format
+  failures surface in seconds.
+- Project moved to GitHub: https://github.com/taejungpark/ch6-sLLM
+  (CC BY 4.0, public). Notebook now begins with a `git clone` cell so it
+  works on a fresh Colab runtime.
 
 ### 2026-05-05 — Modernization (resolved original "Problems to solve")
 

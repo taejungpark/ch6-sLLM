@@ -381,7 +381,7 @@ if __name__ == "__main__":
         default=os.getenv("OPENAI_API_KEY") or os.getenv("GEMINI_API_KEY") or os.getenv("GROQ_API_KEY") or "ollama",
         help="API key. Falls back to OPENAI_API_KEY / GEMINI_API_KEY / GROQ_API_KEY env vars; uses 'ollama' as a placeholder for local Ollama servers.",
     )
-    # Defaults sized for Gemini 2.0 Flash free tier (15 RPM, 1M TPM).
+    # Defaults sized for Gemini Flash free tier (conservative: 15 RPM, 1M TPM).
     # Override via --max_requests_per_minute / --max_tokens_per_minute.
     parser.add_argument("--max_requests_per_minute", type=int, default=15)
     parser.add_argument("--max_tokens_per_minute", type=int, default=1_000_000)

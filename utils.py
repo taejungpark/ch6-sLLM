@@ -21,7 +21,7 @@ def make_prompt(ddl, question, query=""):
 def make_requests_for_gpt_evaluation(df, filename, dir="requests", model="gemini-2.5-flash"):
     """Build a JSONL of OpenAI-compatible chat-completion requests for an LLM judge.
 
-    Default judge is Gemini 2.0 Flash via the OpenAI-compatible endpoint, but the
+    Default judge is Gemini 2.5 Flash via the OpenAI-compatible endpoint, but the
     request body works unchanged against any OpenAI-compatible backend (OpenAI,
     Ollama, Groq, etc.) — switch by changing `--request_url` on the parallel
     processor.

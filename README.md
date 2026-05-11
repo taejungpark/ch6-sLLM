@@ -35,7 +35,7 @@
 
 ## 평가 백엔드 변경
 
-기본 judge는 **Gemini 2.0 Flash**(무료, 15 RPM)이지만, `--request_url`만 바꾸면 다른 백엔드로 전환됩니다:
+기본 judge는 **Gemini 2.5 Flash**이지만, `--request_url`만 바꾸면 다른 백엔드로 전환됩니다:
 
 | 백엔드 | URL | 환경변수 |
 |---|---|---|
