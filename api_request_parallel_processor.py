@@ -39,10 +39,13 @@ async def process_api_requests_from_file(
 
     # infer API endpoint and construct request header
     api_endpoint = api_endpoint_from_url(request_url)
-    request_header = {"Authorization": f"Bearer {api_key}"}
+    # Some backends (Groq via Cloudflare) reject default Python user agents
+    # with HTTP 403 / Cloudflare error 1010. Setting a browser-like UA avoids it.
+    user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+    request_header = {"Authorization": f"Bearer {api_key}", "User-Agent": user_agent}
     # use api-key header for Azure deployments
     if '/deployments' in request_url:
-        request_header = {"api-key": f"{api_key}"}
+        request_header = {"api-key": f"{api_key}", "User-Agent": user_agent}
 
     # initialize trackers
     queue_of_requests_to_retry = asyncio.Queue()
