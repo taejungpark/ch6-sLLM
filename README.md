@@ -6,8 +6,8 @@
 
 | 챕터 | 주제 | 노트북 | 핵심 사용 도구 |
 |---|---|---|---|
-| 6장 | Text-to-SQL 미세 조정 | [`chapter_6.ipynb`](https://colab.research.google.com/github/taejungpark/LLM-class/blob/main/chapter_6.ipynb) · [`chapter_6_Groq.ipynb`](https://colab.research.google.com/github/taejungpark/LLM-class/blob/main/chapter_6_Groq.ipynb) | `Yi-Ko-6B` + LoRA(`trl.SFTTrainer`) + LLM judge |
-| 9장 | RAG · 캐시 · 가드레일 · 로깅 | [`chapter_9.ipynb`](https://colab.research.google.com/github/taejungpark/LLM-class/blob/main/chapter_9.ipynb) | LlamaIndex · ChromaDB · NeMo-Guardrails · W&B |
+| 6장 | Text-to-SQL 미세 조정 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taejungpark/LLM-class/blob/main/chapter_6.ipynb) [`chapter_6.ipynb`](chapter_6.ipynb) · [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taejungpark/LLM-class/blob/main/chapter_6_Groq.ipynb) [`chapter_6_Groq.ipynb`](chapter_6_Groq.ipynb) | `Yi-Ko-6B` + LoRA(`trl.SFTTrainer`) + LLM judge |
+| 9장 | RAG · 캐시 · 가드레일 · 로깅 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taejungpark/LLM-class/blob/main/chapter_9.ipynb) [`chapter_9.ipynb`](chapter_9.ipynb) | LlamaIndex · ChromaDB · NeMo-Guardrails · W&B |
 
 ---
 
