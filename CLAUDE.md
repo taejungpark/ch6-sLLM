@@ -92,7 +92,7 @@ reproduce:
   Switched default to `gemini-2.5-flash` and added a smoke-test cell that
   fires a single request before the 100-call eval, so quota/auth/format
   failures surface in seconds.
-- Project moved to GitHub: https://github.com/taejungpark/ch6-sLLM
+- Project moved to GitHub: https://github.com/taejungpark/LLM-class (renamed from `ch6-sLLM` 2026-05-27 to host additional chapters)
   (CC BY 4.0, public). Notebook now begins with a `git clone` cell so it
   works on a fresh Colab runtime.
 

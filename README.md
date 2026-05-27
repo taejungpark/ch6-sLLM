@@ -8,8 +8,8 @@
 
    | 노트북 | Judge 백엔드 | API 키 발급 | 무료 tier 특성 |
    |---|---|---|---|
-   | [`chapter_6.ipynb`](https://colab.research.google.com/github/taejungpark/ch6-sLLM/blob/main/chapter_6.ipynb) | Gemini 2.5 Flash | [Google AI Studio](https://aistudio.google.com/apikey) | 5 RPM (느림), 100건 평가에 ~20분 |
-   | [`chapter_6_Groq.ipynb`](https://colab.research.google.com/github/taejungpark/ch6-sLLM/blob/main/chapter_6_Groq.ipynb) | Groq (Llama 3.3 70B) | [Groq Console](https://console.groq.com/keys) | 30 RPM, 100건에 ~3-4분 |
+   | [`chapter_6.ipynb`](https://colab.research.google.com/github/taejungpark/LLM-class/blob/main/chapter_6.ipynb) | Gemini 2.5 Flash | [Google AI Studio](https://aistudio.google.com/apikey) | 5 RPM (느림), 100건 평가에 ~20분 |
+   | [`chapter_6_Groq.ipynb`](https://colab.research.google.com/github/taejungpark/LLM-class/blob/main/chapter_6_Groq.ipynb) | Groq (Llama 3.3 70B) | [Groq Console](https://console.groq.com/keys) | 30 RPM, 100건에 ~3-4분 |
 
    ※ 계정에 따라 Gemini free tier가 `limit: 0`으로 막혀있는 경우(billing 활성화된 GCP 프로젝트 등)가 있어, 강의용으로는 **Groq 버전을 권장**합니다.
 
